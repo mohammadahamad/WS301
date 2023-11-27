@@ -1,0 +1,13 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+search_page:
+    path: '/recherche'
+    controller: App\Controller\RechercheController::index
+
+app_connexion:
+    path: /connexion/
+    controller: App\Controller\ConnexionController::index
