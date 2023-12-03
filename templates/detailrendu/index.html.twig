@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Rendu{% endblock %}
+
+{% block body %}
+    <h1>Détails du Rendu</h1>
+    <p>{{ rendu['Nom de module'] }}</p>
+    <p>{{ rendu['Date de rendu'] }} à {{ rendu['Heure de rendu'] }}</p>
+    <p>Statut: {{ rendu['Statut'] }}</p>
+
+    <button id="notifyBtn">Me Notifier</button>
+
+    <script src="{{ asset('node_modules/push.js/bin/push.min.js') }}"></script>
+    <script>
+        document.getElementById('notifyBtn').addEventListener('click', function () {
+            Push.create("Notification", {
+                body: "Votre notification ici!",
+                icon: "/path/to/icon.png", // Ajoutez le chemin vers votre icône
+                timeout: 4000, // Durée de la notification en millisecondes
+            });
+        });
+    </script>
+{% endblock %}

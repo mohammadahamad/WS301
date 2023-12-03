@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendu{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #87CEEB, #1E90FF);
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            color: white;
+            /* Votre style pour la barre de navigation ici */
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-section {
+            width: 70%;
+        }
+
+        .aside-section {
+            width: 30%;
+        }
+
+        .rectangle {
+            width: 70%;
+            padding: 10px;
+            border-radius: 25px;
+            background-color: #e0e0e0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 20px 0 10px 10px;
+        }
+
+        .rectangle:hover {
+            background: linear-gradient(to right, #87CEEB, #1E90FF);
+            transform: scale(1.01);
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 5px;
+        }
+
+        .with-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .arrow-icon {
+            grid-column: span 3;
+            text-align: right;
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .calendar-section {
+            margin-top: 20px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Styles supplémentaires pour les titres */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        img {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+        }
+    </style>
+
+    <!-- Contenu de la page -->
+    <div class="content">
+        <h1>Rendus récents</h1>
+
+        <div class="container">
+            <div class="main-section">
+                <div class="rectangle">
+                    <div class="label">Nom du Module</div>
+                    <div class="label">Date de rendu</div>
+                    <div class="label">Statut</div>
+                    <div class="content">Dev Back</div>
+                    <div class="content">18/11/2023</div>
+                    <div class="content with-icon">En cours <img src="/assets/images/sablier.png" alt="En cours"></div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <div class="rectangle">
+                    <div class="label">Nom du Module</div>
+                    <div class="label">Date de rendu</div>
+                    <div class="label">Statut</div>
+                    <div class="content">Dev Back</div>
+                    <div class="content">18/11/2023</div>
+                    <div class="content with-icon">En cours <img src="/assets/images/sablier.png" alt="En cours"></div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <div class="rectangle">
+                    <div class="label">Nom du Module</div>
+                    <div class="label">Date de rendu</div>
+                    <div class="label">Statut</div>
+                    <div class="content">Dev Back</div>
+                    <div class="content">18/11/2023</div>
+                    <div class="content with-icon">En cours <img src="/assets/images/sablier.png" alt="En cours"></div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <div class="rectangle">
+                    <div class="label">Nom du Module</div>
+                    <div class="label">Date de rendu</div>
+                    <div class="label">Statut</div>
+                    <div class="content">Dev Back</div>
+                    <div class="content">18/11/2023</div>
+                    <div class="content with-icon">En cours <img src="/assets/images/sablier.png" alt="En cours"></div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <div class="rectangle">
+                    <div class="label">Nom du Module</div>
+                    <div class="label">Date de rendu</div>
+                    <div class="label">Statut</div>
+                    <div class="content">Dev Back</div>
+                    <div class="content">18/11/2023</div>
+                    <div class="content with-icon">En cours <img src="/assets/images/sablier.png" alt="En cours"></div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <!-- Ajoutez plus de modules au besoin -->
+            </div>
+
+            <div class="aside-section">
+                <h2>Filtres</h2>
+                <div class="calendar-section">
+                    <label for="start-date">Date de début :</label>
+                    <input type="date" id="start-date" name="start-date">
+                </div>
+                <div class="calendar-section">
+                    <label for="end-date">Date de fin :</label>
+                    <input type="date" id="end-date" name="end-date">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

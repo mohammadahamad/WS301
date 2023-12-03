@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #87CEEB, #1E90FF);
+            color: #333;
+        }
+
+        .content {
+            width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #calendar {
+            width: 100%;
+        }
+    </style>
+
+    <!-- Contenu de la page -->
+    <div class="content">
+        <h1>Agenda</h1>
+
+        <div id="calendar"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js" integrity="sha256-alsi6DkexWIdeVDEct5s7cnqsWgOqsh2ihuIZbU6H3I=" crossorigin="anonymous"></script>
+
+        {% block javascripts %}
+            <script>
+                // Fonction pour obtenir la couleur de fond en fonction du statut
+                function getEventBackgroundColor(statut) {
+                    switch (statut) {
+                        case "En Cours":
+                            return "#ffe045"; // Jaune
+                        case "Rendu":
+                            return "#2eff2e"; // Vert
+                        case "Non Rendu":
+                            return "#ff3131"; // Rouge
+                        default:
+                            return "black"; // Bleu par défaut
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        locale: 'fr',
+                        firstDay: 1,
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'timeGridWeek,dayGridMonth,timeGridDay'
+                        },
+                        buttonText: {
+                            today: 'Aujourd\'hui',
+                            month: 'Mois',
+                            week: 'Semaine',
+                            day: 'Jour'
+                        },
+                        events: '/data/calendrier.json', // Lien vers le fichier JSON
+                        eventClick: function(info) {
+                            alert('Nom du module: ' + info.event.title + '\nDate de rendu: ' + info.event.start.toLocaleDateString() + '\nHeure de rendu: ' + info.event.start.toLocaleTimeString() + '\nStatut: ' + info.event.extendedProps.status);
+                        },
+                        eventContent: function(info) {
+                            return {
+                                html: '<div style="color:black; background-color:' + getEventBackgroundColor(info.event.extendedProps.status) + '; padding: 5px;">' +
+                                    '<div style="font-weight: bolder">' + info.event.title + '</div>' +
+                                    '<div>Date de rendu: ' + info.event.start.toLocaleDateString() + '</div>' +
+                                    '<div>Heure de rendu: ' + info.event.start.toLocaleTimeString() + '</div>' +
+                                    '<div>Statut: ' + info.event.extendedProps.status + '</div>' +
+                                    '</div>'
+                            };
+                        }
+                    });
+
+                    calendar.render();
+                });
+            </script>
+        {% endblock %}
+    </div>
+
+{% endblock %}
